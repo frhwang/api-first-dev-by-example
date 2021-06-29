@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +27,7 @@ class TodoServiceImplTest {
 
     @Test
     public void getTodos() {
-        List<Todo> mockTodos = Arrays.asList(
+        List<Todo> mockTodos = List.of(
             Todo.of(1L, "할 일 1"),
             Todo.of(2L, "할 일 2")
         );
