@@ -6,14 +6,14 @@
 :toclevels: 4
 :sectlinks:
 
-//== 할 일 목록 조회
-//
-//operation::get-todos[snippets='curl-request,http-request,http-response,response-fields']
-//
-//== 할 일 등록
-//
-//operation::save-todo[snippets='curl-request,http-request,request-fields,http-response,response-fields']
-//
-//== 할 일 삭제
-//
-//operation::delete-todo[snippets='curl-request,http-request,path-parameters,http-response']
+== 할 일 목록 조회
+
+operation::get-todos[snippets='curl-request,http-request,http-response,response-fields']
+
+== 할 일 등록
+
+operation::save-todo[snippets='curl-request,http-request,request-fields,http-response,response-fields']
+
+== 할 일 삭제
+
+operation::delete-todo[snippets='curl-request,http-request,path-parameters,http-response']
