@@ -4,10 +4,7 @@ import com.example.todo.application.dto.TodoRequest
 import com.example.todo.application.dto.TodoResponse
 import com.example.todo.domain.Todo
 import com.example.todo.domain.TodoRepository
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.hasItem
-import org.hamcrest.Matchers.hasSize
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
@@ -36,8 +33,8 @@ class TodoServiceImplTest {
 
         val todos = todoServiceImpl.getTodos()
 
-        assertThat(todos, hasSize(mockTodos.size))
-        assertThat(todos, hasItem(mockTodos.random().let { TodoResponse(it.id, it.content) }))
+        assertThat(todos).hasSize(mockTodos.size)
+        assertThat(todos).contains(mockTodos.random().let { TodoResponse(it.id, it.content) })
 
         verify(todoRepository).findAll()
     }
@@ -52,8 +49,7 @@ class TodoServiceImplTest {
 
         val todoResponse = todoServiceImpl.saveTodo(TodoRequest(content))
 
-        assertThat(todoResponse.id, `is`(id))
-        assertThat(todoResponse.content, `is`(content))
+        assertThat(todoResponse).isEqualTo(TodoResponse(id, content))
 
         verify(todoRepository).save(todoToSave)
     }
