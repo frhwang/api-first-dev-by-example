@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.Optional;
-
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 class TodoRepositoryTest {
@@ -20,12 +17,11 @@ class TodoRepositoryTest {
         Todo todoToSave = Todo.of("어떤 할 일");
         Todo savedTodo = todoRepository.save(todoToSave);
 
-        assertThat(savedTodo, is(equalTo(todoToSave)));
+        assertThat(savedTodo).isEqualTo(todoToSave);
 
-        Optional<Todo> fetchedTodo = todoRepository.findById(savedTodo.getId());
+        Todo fetchedTodo = todoRepository.findById(savedTodo.getId()).orElseThrow();
 
-        assertThat(fetchedTodo.isPresent(), is(true));
-        assertThat(savedTodo, is(equalTo(fetchedTodo.get())));
+        assertThat(savedTodo).isEqualTo(fetchedTodo);
     }
 
     @Test
@@ -34,10 +30,10 @@ class TodoRepositoryTest {
         Todo savedTodo = todoRepository.save(todoToSave);
         Long id = savedTodo.getId();
 
-        assertThat(todoRepository.existsById(id), is(true));
+        assertThat(todoRepository.existsById(id)).isTrue();
 
         todoRepository.deleteById(savedTodo.getId());
 
-        assertThat(todoRepository.existsById(id), is(false));
+        assertThat(todoRepository.existsById(id)).isFalse();
     }
 }

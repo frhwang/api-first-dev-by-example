@@ -13,9 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TodoServiceImplTest {
@@ -36,8 +36,8 @@ class TodoServiceImplTest {
 
         List<TodoResponse> todos = todoService.getTodos();
 
-        assertThat(todos, hasSize(2));
-        assertThat(todos, hasItem(TodoResponse.of(mockTodos.get(0).getId(), mockTodos.get(0).getContent())));
+        assertThat(todos).hasSize(mockTodos.size());
+        assertThat(todos).contains(TodoResponse.of(mockTodos.get(0).getId(), mockTodos.get(0).getContent()));
         verify(todoRepository).findAll();
     }
 
@@ -50,8 +50,8 @@ class TodoServiceImplTest {
         TodoRequest todoRequest = TodoRequest.of(todoToSave.getContent());
         TodoResponse todoResponse = todoService.saveTodo(todoRequest);
 
-        assertThat(todoResponse, is(notNullValue()));
-        assertThat(todoResponse, is(TodoResponse.of(savedTodo.getId(), savedTodo.getContent())));
+        assertThat(todoResponse).isNotNull();
+        assertThat(todoResponse).isEqualTo(TodoResponse.of(savedTodo.getId(), savedTodo.getContent()));
         verify(todoRepository).save(todoToSave);
     }
 
