@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.whenever
 
 @ExtendWith(MockitoExtension::class)
 class TodoServiceImplTest {
@@ -29,7 +29,7 @@ class TodoServiceImplTest {
             Todo(2L, "할 일 2"),
         )
 
-        `when`(todoRepository.findAll()).thenReturn(mockTodos)
+        whenever(todoRepository.findAll()).thenReturn(mockTodos)
 
         val todos = todoServiceImpl.getTodos()
 
@@ -45,7 +45,7 @@ class TodoServiceImplTest {
         val id = 1L
         val todoToSave = Todo.of(content)
 
-        `when`(todoRepository.save(todoToSave)).thenReturn(todoToSave.copy(id = id))
+        whenever(todoRepository.save(todoToSave)).thenReturn(todoToSave.copy(id = id))
 
         val todoResponse = todoServiceImpl.saveTodo(TodoRequest(content))
 

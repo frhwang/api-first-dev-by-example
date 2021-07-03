@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
+import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -68,7 +68,7 @@ class TodoControllerTest {
             TodoResponse(2L, "할 일 2")
         )
 
-        `when`(todoService.getTodos()).thenReturn(todos)
+        whenever(todoService.getTodos()).thenReturn(todos)
 
         mockMvc
             .perform(get("/todos").contentType(MediaType.APPLICATION_JSON))
@@ -93,7 +93,7 @@ class TodoControllerTest {
         val todoRequest = TodoRequest("할 일")
         val todoResponse = TodoResponse(1L, todoRequest.content)
 
-        `when`(todoService.saveTodo(todoRequest)).thenReturn(todoResponse)
+        whenever(todoService.saveTodo(todoRequest)).thenReturn(todoResponse)
 
         mockMvc
             .perform(
