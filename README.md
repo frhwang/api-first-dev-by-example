@@ -66,3 +66,5 @@
 - [Spring REST Docs vs OpenAPI](https://www.baeldung.com/spring-rest-docs-vs-openapi)
 - [Swagger와 Spring Restdocs의 우아한 조합](https://taetaetae.github.io/posts/a-combination-of-swagger-and-spring-restdocs/)
 - [Spring Auto REST Docs](https://github.com/ScaCap/spring-auto-restdocs)
+- [우아한형제들 기술 블로그 - Spring Rest Docs 적용](https://techblog.woowahan.com/2597/)
+- [우아한형제들 기술 블로그 - Spring REST Docs에 날개를](https://techblog.woowahan.com/2678/)
