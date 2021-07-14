@@ -1,6 +1,6 @@
 # 예제로 살펴보는 API First 개발
 
-> 본 자료를 가지고 진행한 [스크린캐스트 영상](https://youtu.be/1sTYV1hbzVU)이 YouTub에 공개되었으니 참고하시기 바랍니다.
+> 본 자료를 가지고 진행한 [스크린캐스트 영상](https://youtu.be/1sTYV1hbzVU)이 공개되었으니 참고하시기 바랍니다.
 
 ## 왜 API First 개발인가?
 
